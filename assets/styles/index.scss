@@ -5,24 +5,38 @@
 
 body {
   background: #29C5E4;
-  margin: 1px;
 }
 
-header {
-  color: black;
-  height: 40px;
-  width: 100%;
+
+
+.title {
+  text-align: center;
+  font-size: 50px;
+  font-family: Poiret One;
+}
+
+.container {
+  background: red;
+  width: 900px;
+  height: 900px;
+  margin: 30px auto;
+
+}
+
+.inline {
+  display: inline-block;
 }
 
 .board {
   background: black;
   width: 500px;
   height: 500px;
-  margin: 75px auto;
+  margin: 0 auto;
 }
 
 .box {
   background: white;
+  margin: 2px;
   height: 30%;
   width: 30%;
   display: inline-block;
