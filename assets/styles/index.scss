@@ -1,7 +1,29 @@
-$background-color: #4e4e4e;
-$font-color: #dfdfdf;
+
+* {
+  box-sizing: border-box;
+}
 
 body {
-  background-color: $background-color;
-  color: $font-color;
+  background: #29C5E4;
+  margin: 1px;
+}
+
+header {
+  color: black;
+  height: 40px;
+  width: 100%;
+}
+
+.board {
+  background: black;
+  width: 500px;
+  height: 500px;
+  margin: 75px auto;
+}
+
+.box {
+  background: white;
+  height: 30%;
+  width: 30%;
+  display: inline-block;
 }
