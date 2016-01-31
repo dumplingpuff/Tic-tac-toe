@@ -7,37 +7,46 @@ body {
   background: #29C5E4;
 }
 
+.navbar{
+  width: 700px;
+  height: 50px;
+  margin: auto;
+}
 
+.navbar li {
+  display: inline-block;
+  font-family: Poiret One;
+  list-style: none;
+
+}
 
 .title {
+  font-size: 48px;
+  margin: 10px;
   text-align: center;
-  font-size: 50px;
-  font-family: Poiret One;
 }
 
 .container {
   background: red;
-  width: 900px;
-  height: 900px;
-  margin: 30px auto;
+  height: 450px;
+  margin: auto;
+  width: 450px;
 
-}
-
-.inline {
-  display: inline-block;
 }
 
 .board {
   background: black;
-  width: 500px;
-  height: 500px;
+  height: 400px;
   margin: 0 auto;
+  position: relative;
+  top: 5%;
+  width: 400px;
 }
 
-.box {
+.board div {
   background: white;
-  margin: 2px;
-  height: 30%;
-  width: 30%;
   display: inline-block;
+  height: 30%;
+  margin: 2px;
+  width: 30%;
 }
