@@ -9,27 +9,26 @@ require('./example');
 // load sass manifest
 require('../styles/index.scss');
 
+
 let move;
 
-let message = function(msg) {
-  $('.message').text(msg);
-};
-
-
-let gameStart = function() {
+let gameStart =function() {
   move = 'X';
-  $('.message').text('Let\'s start the game with ' + move + '\'s turn.')
+  $('.message').text('Let\'s start the game with ' + move + '\'s turn.');
 };
 
 let makeMove = function() {
-  $(this).text(move)
-}
+
+  $('.box').on('click', function() {
+    $(this).text(move);
+  });
+
+};
+
 
 
 $(document).ready(() => {
   console.log('It works.');
-  console.log('testing for multiple')
-
+  gameStart();
+  makeMove();
 });
-
-$(document).ready(gameStart());
