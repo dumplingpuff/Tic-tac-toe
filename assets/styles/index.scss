@@ -94,11 +94,12 @@ header div {
   width: 400px;
 }
 
-.board div {
+.board .box {
   background: white;
   display: inline-block;
   height: 30%;
   margin: 1px;
+  padding: 0;
   width: 30%;
 }
 

@@ -18,7 +18,6 @@ let gameStart =function() {
 };
 
 let makeMove = function() {
-
   $('.box').on('click', function() {
     $(this).text(move);
   });
@@ -32,3 +31,5 @@ $(document).ready(() => {
   gameStart();
   makeMove();
 });
+
+$(document).ready(makeMove());
