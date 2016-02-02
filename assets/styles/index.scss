@@ -1,23 +1,29 @@
 
+//
+// $background-color: #4e4e4e ;
+// $font-color: #dfdfdf ;
+
 * {
   box-sizing: border-box;
+  font-family: Poiret One;
 }
 
 body {
   background: #29C5E4;
 }
 
-.navbar{
-  width: 700px;
-  height: 50px;
+
+// Header bar
+header {
+  width: 450px;
+  height: 100px;
   margin: auto;
+  position: relative;
+  text-align: center;
 }
 
-.navbar li {
-  display: inline-block;
-  font-family: Poiret One;
-  list-style: none;
-
+header div {
+  display: inline-block;;
 }
 
 .title {
@@ -26,12 +32,49 @@ body {
   text-align: center;
 }
 
+// Sign in and Log in Buttons
+
+.buttons {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.buttons div {
+  font-size: 20px;
+  padding: 7px;
+  margin: 0;
+}
+
+.active {
+  background: yellow;
+}
+
+// Forms
+
+.forms {
+
+}
+
+//  --Game Area--
+
+.game {
+  height: 480px;
+  margin: auto;
+  width: 450px;};
+
+// Scoreboard
+.scoreboard p {
+  display: inline;
+};
+
+
+// Game Board
 .container {
   background: red;
   height: 450px;
   margin: auto;
   width: 450px;
-
 }
 
 .board {

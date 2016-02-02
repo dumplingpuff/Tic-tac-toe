@@ -5,25 +5,42 @@
       <link href='https://fonts.googleapis.com/css?family=Poiret+One' rel='stylesheet' type='text/css'>
     </head>
     <body>
-      <div class='navbar'>
-        <li class="title">Tic Tac Toe</li>
-        <li class='logIn'>Log in</li>
-        <li class='signUp'>Sign Up</li>
+      <header class='navbar'>
+        <div class='title'>Tic Tac Toe</div>
+        <div class='buttons'>
+          <div class='logIn'>Log in</div>
+          <div class='signUp'>Sign Up</div>
+        </div>
+      </header>
+
+      <div class='forms'>
+        <form class='logInForm'>
+          <label for='username'>Username:</label>
+          <input type='text' name='username' value='Enter in your username'>
+          <label for='password'>Password:</label>
+          <input type='password' name='password' value='Password...'>
+
+        <form/>
       </div>
 
-      <p>Player 1</p>
-      <p>Player 2</p>
-      <div class="container">
-        <div class='board inline'>
-          <div class='pos1'></div>
-          <div class='pos2'></div>
-          <div class='pos3'></div>
-          <div class='pos4'></div>
-          <div class='pos5'></div>
-          <div class='pos6'></div>
-          <div class='pos7'></div>
-          <div class='pos8'></div>
-          <div class='pos9'></div>
+      <div class='game'>
+        <div class='scoreboard'>
+          <p>Player 1:</p>
+          <p>Player 2</p>
+          <p>Tie:</p>
+        </div>
+        <div class="container">
+          <div class='board inline'>
+            <div class='pos1'></div>
+            <div class='pos2'></div>
+            <div class='pos3'></div>
+            <div class='pos4'></div>
+            <div class='pos5'></div>
+            <div class='pos6'></div>
+            <div class='pos7'></div>
+            <div class='pos8'></div>
+            <div class='pos9'></div>
+          </div>
         </div>
       </div>
 
