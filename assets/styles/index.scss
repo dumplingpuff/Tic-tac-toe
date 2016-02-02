@@ -1,16 +1,5 @@
-
-//
-// $background-color: #4e4e4e ;
-// $font-color: #dfdfdf ;
-
-* {
-  box-sizing: border-box;
-  font-family: Poiret One;
-}
-
-body {
-  background: #29C5E4;
-}
+@import 'color';
+@import 'theme';
 
 
 // Header bar
@@ -47,18 +36,17 @@ header div {
 }
 
 .active {
-  background: yellow;
+  background: $yellow;
 }
-
 // Forms
 
 .logInForm {
-  background: yellow;
-  height: 120px;
-  width: 150px;
-  top: 50px;
-  z-index: 100;
+  background: $yellow;
   float: right;
+  height: 120px;
+  top: 50px;
+  width: 150px;
+  z-index: 100;
 }
 
 
@@ -72,21 +60,21 @@ header div {
 
 // Scoreboard
 .scoreboard p {
-  display: inline;
   clear: right;
+  display: inline;
 };
 
 
 // Game Board
 .container {
-  background: red;
+  background: $red;
   height: 450px;
   margin: auto;
   width: 450px;
 }
 
 .board {
-  background: black;
+  background: $black;
   height: 400px;
   margin: 0 auto;
   position: relative;
@@ -94,8 +82,8 @@ header div {
   width: 400px;
 }
 
-.board canvas {
-  background: white;
+.board .box {
+  background: $white;
   display: inline-block;
   height: 30%;
   margin: 2px;
