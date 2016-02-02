@@ -24,6 +24,16 @@ let makeMove = function() {
 
 };
 
+let checkWinner = function() {
+  if(checkRow(1, 2 ,3))
+}
+
+let checkRow = function(a, b, c, move) {
+  let posA =
+  if($('pos' + a).val() === move && $('pos' + b).val() === move && $('pos' + c).val() === move)
+  return true;
+}
+
 
 
 $(document).ready(() => {
