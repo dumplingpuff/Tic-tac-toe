@@ -9,6 +9,15 @@ require('./example');
 // load sass manifest
 require('../styles/index.scss');
 
+let turn;
+
+let message = function(msg) {
+  $('.message').text(msg);
+};
+
+
+
+
 $(document).ready(() => {
   console.log('It works.');
 });
