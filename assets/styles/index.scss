@@ -15,11 +15,11 @@ body {
 
 // Header bar
 header {
-  width: 450px;
   height: 100px;
   margin: auto;
   position: relative;
   text-align: center;
+  width: 450px;
 }
 
 header div {
@@ -35,15 +35,15 @@ header div {
 // Sign in and Log in Buttons
 
 .buttons {
-  position: absolute;
   bottom: 0;
+  position: absolute;
   right: 0;
 }
 
 .buttons div {
   font-size: 20px;
-  padding: 7px;
   margin: 0;
+  padding: 7px;
 }
 
 .active {
@@ -52,9 +52,16 @@ header div {
 
 // Forms
 
-.forms {
-
+.logInForm {
+  background: yellow;
+  height: 120px;
+  width: 150px;
+  top: 50px;
+  z-index: 100;
+  float: right;
 }
+
+
 
 //  --Game Area--
 
@@ -66,6 +73,7 @@ header div {
 // Scoreboard
 .scoreboard p {
   display: inline;
+  clear: right;
 };
 
 
