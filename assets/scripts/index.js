@@ -70,7 +70,6 @@ let checkWinner = function() {
 // Moves portion
 
 let switchMove = function() {
-  if()
   if (move === 'X') {
     move = 'O';
     return move;
