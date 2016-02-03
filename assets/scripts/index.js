@@ -11,35 +11,92 @@ require('../styles/index.scss');
 
 
 let move;
+let message = $('.message');
+let winner;
 
-let gameStart =function() {
+let gameStart = function() {
+  console.log('test');
   move = 'X';
-  $('.message').text('Let\'s start the game with ' + move + '\'s turn.');
+  message.text('Let\'s start the game with ' + move + '\'s turn.');
+  return move;
+};
+
+
+// checking for answer.
+
+let box = function(num) {
+  return $('.pos' + num);
+};
+
+let check = function(a, b, c) {
+  if(box(a).text() === move && box(b).text() === move && box(c).text() === move) {
+  return true;
+  }
+};
+
+
+
+let checkRow = function() {
+  if(check(1, 2, 3) || check(4, 5, 6) || check(7, 8, 9)){
+    return true;
+  }
+
+  return false;
+};
+
+let checkCol = function() {
+  if(check(1, 4, 7) || check(2, 5, 8) || check(3, 6, 9)) {
+    return true;
+  }
+  return false;
+};
+
+let checkDiag = function() {
+  if(check(1, 5, 9) || check(3, 5, 9)) {
+    return true;
+  }
+
+  return false;
+};
+
+let checkWinner = function() {
+  if(checkRow() || checkCol() || checkDiag()) {
+    message.text('The winner is ' + move);
+    return true;
+  }
+  return false;
+};
+
+// Moves portion
+
+let switchMove = function() {
+  if()
+  if (move === 'X') {
+    move = 'O';
+    return move;
+  } else if (move === 'O') {
+    move = 'X';
+  }
+  message.text('It is ' + move + '\'s turn');
 };
 
 let makeMove = function() {
   $('.box').on('click', function() {
-    $(this).text(move);
+    if ($(this).text() === '') {
+      $(this).text(move);
+      checkWinner();
+      switchMove();
+
+    } else {
+      message.text('Sorry that square is taken.');
+    }
   });
 
 };
 
-// let checkWinner = function() {
-//   if(checkRow(1, 2 ,3))
-// }
-//
-// let checkRow = function(a, b, c, move) {
-//   let posA =
-//   if($('pos' + a).val() === move && $('pos' + b).val() === move && $('pos' + c).val() === move)
-//   return true;
-// }
-
 
 
 $(document).ready(() => {
-  console.log('It works.');
   gameStart();
   makeMove();
 });
-
-$(document).ready(makeMove());
