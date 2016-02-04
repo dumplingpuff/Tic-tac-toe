@@ -74,8 +74,6 @@ let checkWinner = function() {
 
     winner = move;
     console.log('Winner!!!');
-    // $('.box').hide();
-    // $('.board').text(move + ' is the winner');
     return winner;
   }
   return false;
@@ -147,66 +145,4 @@ let makeMove = function() {
 $(document).ready(() => {
   gameStart();
   makeMove();
-  // reset();
 });
-
-
-// let reset = function () {
-//   if(checkWinner() || findTie()) {
-//     console.log('Button needs to show!!!!');
-//     $('.reset').show();
-//     $('.reset').on('click', function() {
-//       $('.box').text('');
-//     });
-//   }
-//     else {
-//       $('.reset').hide();
-//     }
-// };
-
-// I am caving to making a reset button. The original plan was to
-// have the user click again to have the board reset. I had an
-// issue where I put the clear above setting the text in box
-// this caused everything to clear after you win everytime
-// you click making it only one appear and not stick.
-
-// let clearNPrint = function() {
-//   if(checkWinner() || findTie()) {
-//     $('.box').text('');
-//   }
-// };
-
-
-// let hideNshow = function() {
-//   $('.box').hide();
-//   $('.board').text('Boo!');
-// };
-//
-// let killSwitch = function() {
-//   if(checkWinner() || findTie()) {
-//     console.log('Tru dat');
-//     $('.board').on('click', function() {
-//         $('.board').text('');
-//         $('.box').text('');
-//         $('.box').show();
-//         switchMove();
-//         $message.text('New Game!!');
-//         winner = '';
-//
-//     });
-//   }
-// };
-//
-// let show = function() {
-//   $('.board').text('');
-//   $('.box').show();
-// };
-
-// let boardClick = function() {
-//   $('.board').on('click', function() {
-//
-//       $('.board').text('Tee!');
-//       show();
-//
-//   });
-// };
