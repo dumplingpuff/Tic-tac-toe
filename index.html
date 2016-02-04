@@ -12,17 +12,54 @@
           <div class='signUp'>Sign Up</div>
         </div>-->
 
-        <!-- Large modal -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-lg">Large modal</button>
+        <!-- Sign In -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sign-in">Sign In</button>
 
-        <div class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+        <div class="modal fade sign-in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
           <div class="modal-dialog modal-lg">
             <div class="modal-content">
-              ...
+              <form class="form-inline" id='sign-in'>
+                <div class="form-group">
+                  <label class="sr-only" for="emailInput">Email address</label>
+                  <input type="email" name="credentials[email]" class="form-control" id="emailInput" placeholder="Email">
+                </div>
+                <div class="form-group">
+                  <label class="sr-only" for="regPass">Password</label>
+                  <input type="password" name="credentials[password]" class="form-control" id="regPass" placeholder="Password">
+                </div>
+
+                <button type="submit" class="btn btn-default">Sign in</button>
+              </form>
             </div>
           </div>
         </div>
 
+
+        <!-- Sign Up-->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sign-up">Sign Up</button>
+
+        <div class="modal fade sign-up" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <form id="sign-up">
+                  <div class="form-group">
+                    <label for="exampleInputEmail1">Email address</label>
+                    <input type="email" name="credentials[email]" class="form-control" id="exampleInputEmail1" placeholder="Email">
+                  </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" name="credentials[password]" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  </div>
+                  <div class="form-group">
+                    <label class="sr-only" for="confirmPass">Confirm Password</label>
+                    <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Password">
+                  </div>
+                  <button type="submit" class="btn btn-default">Submit</button>
+                </form>
+              </div>
+            </div>
+          </div>
 
         <!--<div class='forms'>
           <form class='log-in-form'>

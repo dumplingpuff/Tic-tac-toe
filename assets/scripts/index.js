@@ -9,6 +9,9 @@ require('./example');
 // load sass manifest
 require('../styles/index.scss');
 
+// load listr.js for ajax
+require('./listr');
+
 
 let move;
 let $message = $('.message');
