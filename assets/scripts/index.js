@@ -71,7 +71,7 @@ let checkDiag = function() {
 
 let checkWinner = function() {
   if(checkRow() || checkCol() || checkDiag()) {
-    $message.text('The winner is ' + move);
+
     winner = move;
     console.log('Winner!!!');
     // $('.box').hide();
@@ -109,7 +109,7 @@ let switchMove = function() {
 
   let gameTxt = function() {
     if(checkWinner()) {
-      $message.text('Yahoo! ' + winner + ' wins the game');
+      $message.text('Yahoo! ' + winner + ' wins the game!' );
     }
     else {
       switchMove();
@@ -126,7 +126,7 @@ let makeMove = function() {
       console.log(' in it');
       $allbx.text('');
       switchMove();
-      $message.text('New Game!');
+      $message.text('New Game! ' + move + ' goes first.');
     }
     else {
 
@@ -135,8 +135,6 @@ let makeMove = function() {
           gameTxt();
           findTie();
           checkWinner();
-
-
         } else {
           $message.text('Sorry that square is taken.');
         }
