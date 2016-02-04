@@ -15,8 +15,8 @@ let $message = $('.message');
 let $allbx = $('.box');
 let winner;
 let count = {
-  p1: 0,
-  p2: 0,
+  pX: 0,
+  pO: 0,
   tie: 0
 };
 
@@ -69,6 +69,8 @@ let checkDiag = function() {
   return false;
 };
 
+// Checking winner or Tie
+
 let checkWinner = function() {
   if(checkRow() || checkCol() || checkDiag()) {
 
@@ -88,7 +90,6 @@ let findTie = function() {
     }
   }
   $message.text('Game is a tie!');
-  console.log('it is true');
   return true;
 };
 
@@ -105,6 +106,8 @@ let switchMove = function() {
     }
   };
 
+// Game Interactions
+
   let gameTxt = function() {
     if(checkWinner()) {
       $message.text('Yahoo! ' + winner + ' wins the game!' );
@@ -115,13 +118,26 @@ let switchMove = function() {
     }
 };
 
-
+let score = function() {
+  if(findTie()) {
+    count.tie += 1;
+    $('.tie').append(count.tie);
+  }
+  else if(move === 'O') {
+    count.pO += 1;
+    $('.pO').append(count.pO);
+  }
+  else if(move === 'X') {
+    count.pX += 1;
+    $('.pX').append(count.pX);
+  }
+};
 
 
 let makeMove = function() {
   $allbx.on('click', function() {
     if(checkWinner() || findTie()) {
-      console.log(' in it');
+      score();
       $allbx.text('');
       switchMove();
       $message.text('New Game! ' + move + ' goes first.');

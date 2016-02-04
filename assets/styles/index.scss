@@ -58,10 +58,13 @@ header div {
   margin: auto;
   width: 450px;};
 
+
+
 // Scoreboard
-.scoreboard p {
-  clear: right;
-  display: inline;
+
+.scoreboard ul {
+  list-style: none;
+  display: inline-block;
   font-size: 18px;
 };
 
