@@ -11,8 +11,14 @@ require('../styles/index.scss');
 
 
 let move;
-let message = $('.message');
+let $message = $('.message');
+let $allbx = $('.box');
 let winner;
+let count = {
+  p1: 0,
+  p2: 0,
+  tie: 0
+};
 
 // let player1 = {};
 // let player2 = {};
@@ -20,7 +26,7 @@ let winner;
 let gameStart = function() {
   console.log('test');
   move = 'X';
-  message.text('Let\'s start the game with ' + move + '\'s turn.');
+  $message.text('Let\'s start the game with ' + move + '\'s turn.');
   return move;
 };
 
@@ -56,7 +62,7 @@ let checkCol = function() {
 };
 
 let checkDiag = function() {
-  if(check(1, 5, 9) || check(3, 5, 9)) {
+  if(check(1, 5, 9) || check(3, 5, 7)) {
     return true;
   }
 
@@ -65,48 +71,30 @@ let checkDiag = function() {
 
 let checkWinner = function() {
   if(checkRow() || checkCol() || checkDiag()) {
-    message.text('The winner is ' + move);
+    $message.text('The winner is ' + move);
     winner = move;
     console.log('Winner!!!');
+    // $('.box').hide();
+    // $('.board').text(move + ' is the winner');
     return winner;
   }
   return false;
 };
 
+
+
 let findTie = function() {
   for(let i = 1; i < 10; i++) {
-    if($box(i).text() !== '') {
+    if($box(i).text() === '') {
       return false;
     }
-    console.log('it is true');
-    return true;
   }
+  $message.text('Game is a tie!');
+  console.log('it is true');
+  return true;
 };
 
-let reset = function () {
-  if(checkWinner()) {
-    console.log('Button needs to show!!!!');
-    $('.reset').show();
-    $('.reset').on('click', function() {
-      $('.box').text('');
-    });
-  }
-    else {
-      $('.reset').hide();
-    }
-};
 
-// I am caving to making a reset button. The original plan was to
-// have the user click again to have the board reset. I had an
-// issue where I put the clear above setting the text in box
-// this caused everything to clear after you win everytime
-// you click making it only one appear and not stick.
-
-// let clearNPrint = function() {
-//   if(checkWinner() || findTie()) {
-//     $('.box').text('');
-//   }
-// };
 
 // Moves portion
 
@@ -121,29 +109,39 @@ let switchMove = function() {
 
   let gameTxt = function() {
     if(checkWinner()) {
-      message.text('Yahoo! ' + winner + ' wins the game');
+      $message.text('Yahoo! ' + winner + ' wins the game');
     }
     else {
-    switchMove();
-    message.text('It is now ' + move + '\'s turn.');
-}
+      switchMove();
+      $message.text('It is now ' + move + '\'s turn.');
+    }
 };
 
+
+
+
 let makeMove = function() {
-  $('.box').on('click', function() {
-    if ($(this).text() === '') {
-      // clearNPrint();
-      $(this).text(move);
+  $allbx.on('click', function() {
+    if(checkWinner() || findTie()) {
+      console.log(' in it');
+      $allbx.text('');
+      switchMove();
+      $message.text('New Game!');
+    }
+    else {
 
-      checkWinner();
-      gameTxt();
-      reset();
+        if ($(this).text() === '') {
+          $(this).text(move);
+          gameTxt();
+          findTie();
+          checkWinner();
 
-    } else {
-      message.text('Sorry that square is taken.');
+
+        } else {
+          $message.text('Sorry that square is taken.');
+        }
     }
   });
-
 };
 
 
@@ -151,5 +149,66 @@ let makeMove = function() {
 $(document).ready(() => {
   gameStart();
   makeMove();
-  reset();
+  // reset();
 });
+
+
+// let reset = function () {
+//   if(checkWinner() || findTie()) {
+//     console.log('Button needs to show!!!!');
+//     $('.reset').show();
+//     $('.reset').on('click', function() {
+//       $('.box').text('');
+//     });
+//   }
+//     else {
+//       $('.reset').hide();
+//     }
+// };
+
+// I am caving to making a reset button. The original plan was to
+// have the user click again to have the board reset. I had an
+// issue where I put the clear above setting the text in box
+// this caused everything to clear after you win everytime
+// you click making it only one appear and not stick.
+
+// let clearNPrint = function() {
+//   if(checkWinner() || findTie()) {
+//     $('.box').text('');
+//   }
+// };
+
+
+// let hideNshow = function() {
+//   $('.box').hide();
+//   $('.board').text('Boo!');
+// };
+//
+// let killSwitch = function() {
+//   if(checkWinner() || findTie()) {
+//     console.log('Tru dat');
+//     $('.board').on('click', function() {
+//         $('.board').text('');
+//         $('.box').text('');
+//         $('.box').show();
+//         switchMove();
+//         $message.text('New Game!!');
+//         winner = '';
+//
+//     });
+//   }
+// };
+//
+// let show = function() {
+//   $('.board').text('');
+//   $('.box').show();
+// };
+
+// let boardClick = function() {
+//   $('.board').on('click', function() {
+//
+//       $('.board').text('Tee!');
+//       show();
+//
+//   });
+// };
