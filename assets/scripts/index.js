@@ -14,6 +14,9 @@ let move;
 let message = $('.message');
 let winner;
 
+// let player1 = {};
+// let player2 = {};
+
 let gameStart = function() {
   console.log('test');
   move = 'X';
@@ -24,14 +27,15 @@ let gameStart = function() {
 
 // checking for answer.
 
-let box = function(num) {
+let $box = function(num) {
   return $('.pos' + num);
 };
 
 let check = function(a, b, c) {
-  if(box(a).text() === move && box(b).text() === move && box(c).text() === move) {
+  if($box(a).text() === move && $box(b).text() === move && $box(c).text() === move) {
   return true;
   }
+  return false;
 };
 
 
@@ -62,29 +66,78 @@ let checkDiag = function() {
 let checkWinner = function() {
   if(checkRow() || checkCol() || checkDiag()) {
     message.text('The winner is ' + move);
-    return true;
+    winner = move;
+    console.log('Winner!!!');
+    return winner;
   }
   return false;
 };
 
+let findTie = function() {
+  for(let i = 1; i < 10; i++) {
+    if($box(i).text() !== '') {
+      return false;
+    }
+    console.log('it is true');
+    return true;
+  }
+};
+
+let reset = function () {
+  if(checkWinner()) {
+    console.log('Button needs to show!!!!');
+    $('.reset').show();
+    $('.reset').on('click', function() {
+      $('.box').text('');
+    });
+  }
+    else {
+      $('.reset').hide();
+    }
+};
+
+// I am caving to making a reset button. The original plan was to
+// have the user click again to have the board reset. I had an
+// issue where I put the clear above setting the text in box
+// this caused everything to clear after you win everytime
+// you click making it only one appear and not stick.
+
+// let clearNPrint = function() {
+//   if(checkWinner() || findTie()) {
+//     $('.box').text('');
+//   }
+// };
+
 // Moves portion
 
 let switchMove = function() {
-  if (move === 'X') {
-    move = 'O';
-    return move;
-  } else if (move === 'O') {
-    move = 'X';
-  }
-  message.text('It is ' + move + '\'s turn');
+    if (move === 'X') {
+      move = 'O';
+      return move;
+    } else if (move === 'O') {
+      move = 'X';
+    }
+  };
+
+  let gameTxt = function() {
+    if(checkWinner()) {
+      message.text('Yahoo! ' + winner + ' wins the game');
+    }
+    else {
+    switchMove();
+    message.text('It is now ' + move + '\'s turn.');
+}
 };
 
 let makeMove = function() {
   $('.box').on('click', function() {
     if ($(this).text() === '') {
+      // clearNPrint();
       $(this).text(move);
+
       checkWinner();
-      switchMove();
+      gameTxt();
+      reset();
 
     } else {
       message.text('Sorry that square is taken.');
@@ -98,4 +151,5 @@ let makeMove = function() {
 $(document).ready(() => {
   gameStart();
   makeMove();
+  reset();
 });
