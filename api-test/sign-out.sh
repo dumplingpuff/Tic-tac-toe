@@ -1,13 +1,15 @@
 #!/bin/bash
 
-TOKEN="token":"31eedf2df2afd09e55732c76d790c7fd"
+TOKEN="16d1e74cd0e6126f95c13b6602ec44e3"
 USER_ID="42"
+
+# CONTENT_TYPE="application/json"
 
 BASE_URL="http://tic-tac-toe.wdibos.com/"
 URL="${BASE_URL}/sign-out/${USER_ID}"
 
 curl ${URL} \
---silent \
+--include \
 --request DELETE \
 --header "Content-Type: ${CONTENT_TYPE}" \
 --header "Authorization: Token token=${TOKEN}" \

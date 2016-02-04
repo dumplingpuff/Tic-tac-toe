@@ -3,6 +3,6 @@ curl --request POST http://tic-tac-toe.wdibos.com/sign-in \
 --data '{
   "credentials": {
     "email": "boothulu@gmail.com",
-    "password": "bam"
+    "password": "mab"
   }
 }'

@@ -9,8 +9,11 @@ require('./example');
 // load sass manifest
 require('../styles/index.scss');
 
-// load listr.js for ajax
-require('./listr');
+// load member.js for ajax
+require('./member');
+
+// load games.js for ajax
+require('./games');
 
 
 let move;
