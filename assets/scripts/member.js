@@ -8,14 +8,81 @@ const gameData = {
 
 };
 
-let createGame = function(e) {
-  e.preventDefault();
 
-
-
+let createGame = function() {
+  // e.preventDefault();
+  let emptyForm = new FormData();
+  $.ajax({
+    url: myApp.baseUrl + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: emptyForm
+  }).done(function(data) {
+    myApp.game = data.game;
+    console.log('Game created.');
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
 };
 
+let joinGame = function() {
+  // e.preventDefault();
+  let emptyForm = new FormData();
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: emptyForm,
+  }).done(function(data) {
+
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
+};
+
+
+
+let updateGame = function(player, index) {
+  // e.preventDefault();
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: {
+            "game": {
+              "cell": {
+                "index": index,
+                "value": player
+              },
+              "over": false
+  }
+},
+  }).done(function(data) {
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
+};
+
+
+
+
 $(document).ready(() => {
+
   $('#sign-up').on('submit', function(e) {
     e.preventDefault();
     var formData = new FormData(e.target);
@@ -28,6 +95,7 @@ $(document).ready(() => {
     }).done(function(data) {
       $('.modal').modal('hide');
       console.log(data);
+      createGame();
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
@@ -45,6 +113,7 @@ $(document).ready(() => {
     }).done(function(data) {
       $('.modal').modal('hide');
       myApp.user = data.user;
+      createGame();
       console.log(data);
     }).fail(function(jqxhr) {
       console.error(jqxhr);
@@ -97,5 +166,9 @@ $('#change-password').on('submit', function(e) {
 
 
 
-
-module.exports = true;
+// module.exports = {
+//
+//   gameData,
+//   joinGame,
+//   updateGame
+// };

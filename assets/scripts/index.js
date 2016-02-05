@@ -5,15 +5,186 @@
 
 // use require without a reference to ensure a file is bundled
 require('./example');
+// require('./member');
+require('./games');
 
 // load sass manifest
 require('../styles/index.scss');
 
-// load member.js for ajax
-require('./member');
 
-// load games.js for ajax
-require('./games');
+
+const myApp = {
+  baseUrl: 'http://tic-tac-toe.wdibos.com',
+};
+
+const gameData = {
+
+};
+
+
+let createGame = function() {
+  // e.preventDefault();
+  let emptyForm = new FormData();
+  $.ajax({
+    url: myApp.baseUrl + '/games',
+    method: 'POST',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: emptyForm
+  }).done(function(data) {
+    myApp.game = data.game;
+    console.log('Game created.');
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
+};
+
+let joinGame = function() {
+  // e.preventDefault();
+  let emptyForm = new FormData();
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: emptyForm,
+  }).done(function(data) {
+
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
+};
+
+
+
+let updateGame = function(player, index) {
+  // e.preventDefault();
+  $.ajax({
+    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    method: 'PATCH',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    },
+    contentType: false,
+    processData: false,
+    data: {
+            "game": {
+              "cell": {
+                "index": index,
+                "value": player
+              },
+              "over": false
+  }
+},
+  }).done(function(data) {
+    console.log(data);
+  }).fail(function(jqxhr) {
+    console.error(jqxhr);
+  });
+};
+
+
+// ***** Sign in *******
+
+let signUp = function() {
+  $('#sign-up').on('submit', function(e) {
+    e.preventDefault();
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/sign-up',
+      method: 'POST',
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      $('.modal').modal('hide');
+      console.log(data);
+      createGame();
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+};
+
+
+let signIn = function() {
+    $('#sign-in').on('submit', function(e) {
+      e.preventDefault();
+      var formData = new FormData(e.target);
+      $.ajax({
+        url: myApp.baseUrl + '/sign-in',
+        method: 'POST',
+        contentType: false,
+        processData: false,
+        data: formData,
+      }).done(function(data) {
+        $('.modal').modal('hide');
+        myApp.user = data.user;
+        createGame();
+        console.log(data);
+      }).fail(function(jqxhr) {
+        console.error(jqxhr);
+      });
+    });
+};
+
+let signOut = function() {
+  $('#sign-out').on('click', function(e) {
+    e.preventDefault();
+    $.ajax({
+      url: myApp.baseUrl + '/sign-out/' + myApp.user.id,
+      method: 'DELETE',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      contentType: false,
+      processData: false,
+    }).done(function(data) {
+      console.log(data);
+      console.log(myApp);
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+};
+
+let changePass = function() {
+  $('#change-password').on('submit', function(e) {
+    e.preventDefault();
+    if (!myApp.user) {
+      console.error('Wrong!');
+      return;
+    }
+    var formData = new FormData(e.target);
+    $.ajax({
+      url: myApp.baseUrl + '/change-password/' + myApp.user.id,
+      // url: 'http://httpbin.org/post',
+      method: 'PATCH',
+      headers: {
+        Authorization: 'Token token=' + myApp.user.token,
+      },
+      contentType: false,
+      processData: false,
+      data: formData,
+    }).done(function(data) {
+      $('.modal').modal('hide');
+      console.log(data);
+    }).fail(function(jqxhr) {
+      console.error(jqxhr);
+    });
+  });
+};
+
+
+//  ***** Game Engine *****
 
 
 let move;
@@ -144,6 +315,7 @@ let makeMove = function() {
   $allbx.on('click', function() {
     if(checkWinner() || findTie()) {
       score();
+      createGame();
       $allbx.text('');
       switchMove();
       $message.text('New Game! ' + move + ' goes first.');
@@ -152,6 +324,7 @@ let makeMove = function() {
 
         if ($(this).text() === '') {
           $(this).text(move);
+          // updateGame(move, $(this);
           gameTxt();
           findTie();
           checkWinner();
