@@ -47,7 +47,7 @@ let createGame = function() {
   // e.preventDefault();
   let emptyForm = new FormData();
   $.ajax({
-    url: myApp.baseUrl + '/games',
+    url: myApp.baseUrl + '/games/',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
@@ -68,7 +68,7 @@ let joinGame = function() {
   // e.preventDefault();
   let emptyForm = new FormData();
   $.ajax({
-    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
@@ -85,27 +85,53 @@ let joinGame = function() {
 };
 
 
+// let updateGame = function (player, index) {
+// console.log('attempting save game');
+//   $.ajax({
+//     url: myApp.baseUrl + '/games/' + myApp.game.id,
+//     // url: 'http://httpbin.org/post',
+//     method: 'PATCH',
+//     headers: {
+//       Authorization: 'Token token=' + myApp.user.token,
+//     },
+//     data: {
+//   "game": {
+//     "cell": {
+//       "index": index,
+//       "value": player,
+//     },
+//     "over": false
+//   }
+// }
+//   }).done(function(data) {
+//     myApp.game = data.game;
+//     console.log(data);
+//   }).fail(function(jqxhr) {
+//     console.error(jqxhr);
+//   });
+// };
 
-let updateGame = function(player, index) {
+
+let updateGame = function() {
   // e.preventDefault();
+  console.log('starting save');
   $.ajax({
-    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
     },
-    contentType: false,
-    processData: false,
     data: {
-            "game": {
-              "cell": {
-                "index": index,
-                "value": player
-              },
-              "over": false
+  "game": {
+    "cell": {
+      "index": 0,
+      "value": "x",
+    },
+    "over": false
   }
-},
+}
   }).done(function(data) {
+    myApp.game = data.game;
     console.log(data);
   }).fail(function(jqxhr) {
     console.error(jqxhr);
@@ -136,6 +162,15 @@ let signUp = function() {
   });
 };
 
+let show = function() {
+  $('.yesSign').removeClass('hide');
+  $('.notSign').addClass('hide');
+};
+
+let hide = function() {
+  $('.notSign').removeClass('hide');
+  $('.yesSign').addClass('hide');
+};
 
 let signIn = function() {
     $('#sign-in').on('submit', function(e) {
@@ -149,14 +184,13 @@ let signIn = function() {
         data: formData,
       }).done(function(data) {
         $('.modal').modal('hide');
+        show();
         myApp.user = data.user;
-        getGames();
         createGame();
-        console.log(data);
-        // if(myApp.user) {
-        //   joinGame();
-  
-        // }
+        getGames();
+        // console.log(data);
+        console.log(myApp);
+
       }).fail(function(jqxhr) {
         console.error(jqxhr);
       });
@@ -175,6 +209,7 @@ let signOut = function() {
       contentType: false,
       processData: false,
     }).done(function(data) {
+      hide();
       console.log(data);
       console.log(myApp);
     }).fail(function(jqxhr) {
@@ -359,7 +394,7 @@ let makeMove = function() {
 
         if ($(this).text() === '') {
           $(this).text(move);
-          // updateGame(move, $(this);
+          updateGame(move, event.target.id);
           gameTxt();
           findTie();
           checkWinner();

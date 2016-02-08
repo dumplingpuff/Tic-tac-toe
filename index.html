@@ -7,106 +7,119 @@
     <body>
       <header class='navbar'>
         <div class='title'>Tic Tac Toe</div>
-        <!--<div class='buttons'>
-          <div class='logIn active'>Log in</div>
-          <div class='signUp'>Sign Up</div>
-        </div>-->
 
         <!-- Sign In -->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sign-in">Sign In</button>
+        <div class='notSign buttonBox'>
+          <button type="button" data-toggle="modal" data-target=".sign-in">Sign In</button>
 
-        <div class="modal fade sign-in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <form class="form-inline" id='sign-in'>
-                <div class="form-group">
-                  <label class="sr-only" for="emailInput">Email address</label>
-                  <input type="email" name="credentials[email]" class="form-control" id="emailInput" placeholder="Email">
-                </div>
-                <div class="form-group">
-                    <label class="sr-only" for="regPass">Password</label>
-                  <input type="password" name="credentials[password]" class="form-control" id="regPass" placeholder="Password">
-                </div>
-
-                <button type="submit" class="btn btn-default">Sign in</button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-
-        <!-- Sign Up-->
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".sign-up">Sign Up</button>
-
-        <div class="modal fade sign-up" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+          <div class="modal fade sign-in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
             <div class="modal-dialog modal-lg">
               <div class="modal-content">
-                <form id="sign-up">
+                <form class="form-inline" id='sign-in'>
                   <div class="form-group">
-                    <label for="inputEmail">Email address</label>
-                    <input type="email" name="credentials[email]" class="form-control" id="inputEmail" placeholder="Email">
-                  </div>
-                  </div>
-                  <div class="form-group">
-                    <label for="firstPass">Password</label>
-                    <input type="password" name="credentials[password]" class="form-control" id="firstPass" placeholder="Password">
+                    <label class="sr-only" for="emailInput">Email address</label>
+                    <input type="email" name="credentials[email]" class="form-control" id="emailInput" placeholder="Email">
                   </div>
                   <div class="form-group">
-                    <label class="sr-only" for="confirmPass">Confirm Password</label>
-                    <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                      <label class="sr-only" for="regPass">Password</label>
+                    <input type="password" name="credentials[password]" class="form-control" id="regPass" placeholder="Password">
                   </div>
-                  <button type="submit" class="btn btn-default">Submit</button>
+
+                  <button type="submit" class="btn btn-default">Sign in</button>
                 </form>
               </div>
             </div>
           </div>
 
+          <!-- Sign Up-->
 
-          <button id='sign-out' type="button" class="btn btn-primary">Sign Out</button>
-
-
-          <!-- Change Password -->
-          <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".change-password">Change Password</button>
-
-          <div class="modal fade change-password" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg">
+          <button type="button" class="" data-toggle="modal" data-target=".sign-up">Sign Up</button>
+          <div class="modal fade sign-up" tabindex="-1" role="dialog" aria-labelledby="gridSystemModalLabel">
+            <div class="modal-dialog" role="document">
               <div class="modal-content">
-                <form class="form-inline" id='change-password'>
-                  <div class="form-group">
-                    <label class="sr-only" for="oldPass">Old Password</label>
-                    <input type="password" name="passwords[old]" class="form-control" id="oldPass" placeholder="New Password">
-                  </div>
-                  <div class="form-group">
-                      <label class="sr-only" for="newPass">New Password</label>
-                    <input type="password" name="passwords[new]" class="form-control" id="newPass" placeholder="Old Password">
-                  </div>
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title" id="gridSystemModalLabel">Please Sign Up To Play!</h4>
+                </div>
+                <div class="modal-body">
+                  <form id="sign-up">
+                      <div class="form-group">
+                        <label for="inputEmail">Email address</label>
+                        <input type="email" name="credentials[email]" class="form-control" id="inputEmail" placeholder="Email">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="firstPass">Password</label>
+                      <input type="password" name="credentials[password]" class="form-control" id="firstPass" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="confirmPass">Confirm Password</label>
+                      <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+                </div>
+              </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+          </div><!-- /.modal -->
 
-                  <button type="submit" class="btn btn-default">Change Password</button>
-                </form>
+
+
+
+        <!--  <button type="button" class="" data-toggle="modal" data-target=".sign-up">Sign Up</button>
+
+          <div class="modal fade sign-up" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form id="sign-up">
+                    <div class="form-group">
+                      <label for="inputEmail">Email address</label>
+                      <input type="email" name="credentials[email]" class="form-control" id="inputEmail" placeholder="Email">
+                    </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="firstPass">Password</label>
+                      <input type="password" name="credentials[password]" class="form-control" id="firstPass" placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="confirmPass">Confirm Password</label>
+                      <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                    </div>
+                    <button type="submit" class="btn btn-default">Submit</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <div class='yesSign buttonBox hide'>
+            <button id='sign-out' type="button" class="">Sign Out</button>
+
+
+            <!-- Change Password -->
+            <button type="button" class="" data-toggle="modal" data-target=".change-password">Change Password</button>
+
+            <div class="modal fade change-password" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <form class="form-inline" id='change-password'>
+                    <div class="form-group">
+                      <label class="sr-only" for="oldPass">Old Password</label>
+                      <input type="password" name="passwords[old]" class="form-control" id="oldPass" placeholder="New Password">
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="newPass">New Password</label>
+                      <input type="password" name="passwords[new]" class="form-control" id="newPass" placeholder="Old Password">
+                    </div>
+
+                    <button type="submit" class="btn btn-default">Change Password</button>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-
-        <!--<div class='forms'>
-          <form class='log-in-form'>
-            <label for='username'>Username:</label>
-            <input type='text' name='username' value='Enter in your username'>
-            <label for='password'>Password:</label>
-            <input type='password' name='password' value='password'>
-            <input type='submit'>
-
-          <form/>
-        </div>-->
       </header>
 
-      <!---<form class='log-in-form'>
-        <label for='username'>Username:</label>
-        <input type='text' name='username' value='Enter in your username'>
-        <label for='password'>Password:</label>
-        <input type='password' name='password' value='password'>
-        <input type='submit'>
-
-      <form/> --->
 
       <div class='game'>
         <div class='scoreboard'>

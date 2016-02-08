@@ -1,7 +1,0 @@
-Users should be able to....
-A <role>, when <condition>, can <action> which will <effect>
-
-User should be able to win by placing tiles three in a row.
-User should have the ability to track how many games each player has won.
-User can choose which turn it gets.
-When the user wins the other player will start first.

@@ -1,8 +1,14 @@
-TOKEN="cb3cd2f4c914cc8b36971d23b14aa87b"
+TOKEN="2337755be09932ad36231f0ba5a1cb74"
+
+url () {
+  curl --request POST http://tic-tac-toe.wdibos.com/games \
+  --include \
+  --header "Content-Type: false" \
+  --header "Authorization: Token token=${TOKEN}" \
+  --data-urlencode '{}'
+
+}
 
 
-curl --request POST http://tic-tac-toe.wdibos.com/games \
---include \
---header "Content-Type: false" \
---header "Authorization: Token token=${TOKEN}" \
---data '{}'
+url
+echo
