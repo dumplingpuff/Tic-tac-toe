@@ -17,7 +17,6 @@ const myApp = {
 
 let gameData = {
 };
-let num;
 let $message = $('.message');
 
 
@@ -35,12 +34,6 @@ let getGames = function() {
   }).fail(function(requestObject) {
     console.error(requestObject);
   });
-};
-
-let totalGames = function() {
-    console.log('The total amount of games ' + num);
-  $('.total').append(num);
-
 };
 
 let createGame = function() {
@@ -85,35 +78,7 @@ let joinGame = function() {
 };
 
 
-// let updateGame = function (player, index) {
-// console.log('attempting save game');
-//   $.ajax({
-//     url: myApp.baseUrl + '/games/' + myApp.game.id,
-//     // url: 'http://httpbin.org/post',
-//     method: 'PATCH',
-//     headers: {
-//       Authorization: 'Token token=' + myApp.user.token,
-//     },
-//     data: {
-//   "game": {
-//     "cell": {
-//       "index": index,
-//       "value": player,
-//     },
-//     "over": false
-//   }
-// }
-//   }).done(function(data) {
-//     myApp.game = data.game;
-//     console.log(data);
-//   }).fail(function(jqxhr) {
-//     console.error(jqxhr);
-//   });
-// };
-
-
 let updateGame = function() {
-  // e.preventDefault();
   console.log('starting save');
   $.ajax({
     url: myApp.baseUrl + '/games/' + myApp.game.id,
@@ -230,7 +195,6 @@ let changePass = function() {
     var formData = new FormData(e.target);
     $.ajax({
       url: myApp.baseUrl + '/change-password/' + myApp.user.id,
-      // url: 'http://httpbin.org/post',
       method: 'PATCH',
       headers: {
         Authorization: 'Token token=' + myApp.user.token,
