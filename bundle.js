@@ -97,7 +97,7 @@ webpackJsonp([0],[
 	  });
 	};
 
-	var updateGame = function updateGame() {
+	var updateGame = function updateGame(player, index) {
 	  console.log('starting save');
 	  $.ajax({
 	    url: myApp.baseUrl + '/games/' + myApp.game.id,
@@ -108,8 +108,8 @@ webpackJsonp([0],[
 	    data: {
 	      "game": {
 	        "cell": {
-	          "index": 0,
-	          "value": "x"
+	          "index": index,
+	          "value": player
 	        },
 	        "over": false
 	      }

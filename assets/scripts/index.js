@@ -79,7 +79,7 @@ let joinGame = function() {
 };
 
 
-let updateGame = function() {
+let updateGame = function(player, index) {
   console.log('starting save');
   $.ajax({
     url: myApp.baseUrl + '/games/' + myApp.game.id,
@@ -90,8 +90,8 @@ let updateGame = function() {
     data: {
   "game": {
     "cell": {
-      "index": 0,
-      "value": "x",
+      "index": index,
+      "value": player,
     },
     "over": false
   }
