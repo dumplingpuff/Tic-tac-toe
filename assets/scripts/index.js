@@ -29,6 +29,7 @@ let getGames = function() {
     }
   }).done(function(responseBody) {
     gameData = responseBody;
+    console.log('Getting games.');
     console.log(responseBody);
     $('.total').text(gameData.games.length);
   }).fail(function(requestObject) {

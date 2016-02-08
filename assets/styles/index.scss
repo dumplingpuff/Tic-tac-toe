@@ -24,16 +24,16 @@ header {
 // Buttons
 
 header .buttonBox {
-  width: 200px;
+  bottom: 0;
   height: 20px;
   position: absolute;
-  bottom: 0;
   right: 0;
+  width: 200px;
 }
 
 button {
-  border: none;
   background-color: $vibrant-blue;
+  border: none;
   color: $black;
 }
 
