@@ -7,15 +7,12 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 
 // Header bar
 header {
-  height: 100px;
+  height: 110px;
   margin: auto;
+  margin-bottom: 0;
   position: relative;
   text-align: center;
   width: 450px;
-}
-
-header div {
-  display: inline-block;
 }
 
 .title {
@@ -24,34 +21,42 @@ header div {
   text-align: center;
 }
 
-// Sign in and Log in Buttons
+// Buttons
 
-.buttons {
-  bottom: 0;
+header .buttonBox {
+  width: 200px;
+  height: 20px;
   position: absolute;
+  bottom: 0;
   right: 0;
 }
 
-.buttons div {
-  font-size: 20px;
-  margin: 0;
-  padding: 7px;
+button {
+  border: none;
+  background-color: $vibrant-blue;
+  color: $black;
 }
 
-.active {
-  background: $yellow;
+.yesSign {
+  z-index: 10;
 }
+
+.hide {
+  display: none;
+}
+
+
+
 // Forms
 
-.log-in-form {
+form {
   background: $yellow;
-  float: right;
-  height: 120px;
-  top: 50px;
-  width: 150px;
-  z-index: 100;
 }
 
+#signUp {
+  height: 500px;
+  width: 500px;
+}
 
 
 //  --Game Area--
@@ -66,9 +71,9 @@ header div {
 // Scoreboard
 
 .scoreboard p {
-  list-style: none;
   display: inline-block;
   font-size: 18px;
+  list-style: none;
 };
 
 

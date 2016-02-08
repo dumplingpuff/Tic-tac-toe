@@ -5,9 +5,6 @@
 
 // use require without a reference to ensure a file is bundled
 require('./example');
-// require('./member');
-require('./games');
-
 // load sass manifest
 require('../styles/index.scss');
 
@@ -15,18 +12,35 @@ require('../styles/index.scss');
 
 const myApp = {
   baseUrl: 'http://tic-tac-toe.wdibos.com',
-};
-
-const gameData = {
 
 };
 
+let gameData = {
+};
+let $message = $('.message');
+
+
+let getGames = function() {
+  $.ajax({
+    url: myApp.baseUrl +'/games',
+    method: 'GET',
+    headers: {
+      Authorization: 'Token token=' + myApp.user.token,
+    }
+  }).done(function(responseBody) {
+    gameData = responseBody;
+    console.log(responseBody);
+    $('.total').text(gameData.games.length);
+  }).fail(function(requestObject) {
+    console.error(requestObject);
+  });
+};
 
 let createGame = function() {
   // e.preventDefault();
   let emptyForm = new FormData();
   $.ajax({
-    url: myApp.baseUrl + '/games',
+    url: myApp.baseUrl + '/games/',
     method: 'POST',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
@@ -47,7 +61,7 @@ let joinGame = function() {
   // e.preventDefault();
   let emptyForm = new FormData();
   $.ajax({
-    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
@@ -56,7 +70,7 @@ let joinGame = function() {
     processData: false,
     data: emptyForm,
   }).done(function(data) {
-
+    console.log('Joined the game.');
     console.log(data);
   }).fail(function(jqxhr) {
     console.error(jqxhr);
@@ -64,32 +78,32 @@ let joinGame = function() {
 };
 
 
-
-let updateGame = function(player, index) {
-  // e.preventDefault();
+let updateGame = function() {
+  console.log('starting save');
   $.ajax({
-    url: myApp.baseUrl + '/games/' + myApp.user.id,
+    url: myApp.baseUrl + '/games/' + myApp.game.id,
     method: 'PATCH',
     headers: {
       Authorization: 'Token token=' + myApp.user.token,
     },
-    contentType: false,
-    processData: false,
     data: {
-            "game": {
-              "cell": {
-                "index": index,
-                "value": player
-              },
-              "over": false
+  "game": {
+    "cell": {
+      "index": 0,
+      "value": "x",
+    },
+    "over": false
   }
-},
+}
   }).done(function(data) {
+    myApp.game = data.game;
     console.log(data);
   }).fail(function(jqxhr) {
     console.error(jqxhr);
   });
 };
+
+
 
 
 // ***** Sign in *******
@@ -107,13 +121,21 @@ let signUp = function() {
     }).done(function(data) {
       $('.modal').modal('hide');
       console.log(data);
-      createGame();
     }).fail(function(jqxhr) {
       console.error(jqxhr);
     });
   });
 };
 
+let show = function() {
+  $('.yesSign').removeClass('hide');
+  $('.notSign').addClass('hide');
+};
+
+let hide = function() {
+  $('.notSign').removeClass('hide');
+  $('.yesSign').addClass('hide');
+};
 
 let signIn = function() {
     $('#sign-in').on('submit', function(e) {
@@ -127,9 +149,13 @@ let signIn = function() {
         data: formData,
       }).done(function(data) {
         $('.modal').modal('hide');
+        show();
         myApp.user = data.user;
         createGame();
-        console.log(data);
+        getGames();
+        // console.log(data);
+        console.log(myApp);
+
       }).fail(function(jqxhr) {
         console.error(jqxhr);
       });
@@ -148,6 +174,7 @@ let signOut = function() {
       contentType: false,
       processData: false,
     }).done(function(data) {
+      hide();
       console.log(data);
       console.log(myApp);
     }).fail(function(jqxhr) {
@@ -160,13 +187,14 @@ let changePass = function() {
   $('#change-password').on('submit', function(e) {
     e.preventDefault();
     if (!myApp.user) {
+      $('.modal').modal('hide');
+      $message.text('You need to be signed in to change password.');
       console.error('Wrong!');
       return;
     }
     var formData = new FormData(e.target);
     $.ajax({
       url: myApp.baseUrl + '/change-password/' + myApp.user.id,
-      // url: 'http://httpbin.org/post',
       method: 'PATCH',
       headers: {
         Authorization: 'Token token=' + myApp.user.token,
@@ -188,7 +216,7 @@ let changePass = function() {
 
 
 let move;
-let $message = $('.message');
+
 let $allbx = $('.box');
 let winner;
 let count = {
@@ -295,6 +323,8 @@ let switchMove = function() {
     }
 };
 
+
+
 let score = function() {
   if(findTie()) {
     count.tie += 1;
@@ -313,9 +343,13 @@ let score = function() {
 
 let makeMove = function() {
   $allbx.on('click', function() {
-    if(checkWinner() || findTie()) {
+    if (!myApp.user) {
+      $message.text('You need to sign in to play.');
+    }
+    else if(checkWinner() || findTie()) {
       score();
       createGame();
+      getGames();
       $allbx.text('');
       switchMove();
       $message.text('New Game! ' + move + ' goes first.');
@@ -324,7 +358,7 @@ let makeMove = function() {
 
         if ($(this).text() === '') {
           $(this).text(move);
-          // updateGame(move, $(this);
+          updateGame(move, event.target.id);
           gameTxt();
           findTie();
           checkWinner();
@@ -338,6 +372,11 @@ let makeMove = function() {
 
 
 $(document).ready(() => {
+
+  signUp();
+  signIn();
+  signOut();
+  changePass();
   gameStart();
   makeMove();
 });
