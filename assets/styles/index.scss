@@ -5,6 +5,14 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import 'theme';
 
 
+@media (max-width: 540) {
+
+  .game {
+    height: 380px;
+    width: 350px;
+   }
+}
+
 // Header bar
 header {
   height: 110px;
@@ -35,6 +43,7 @@ button {
   background-color: $vibrant-blue;
   border: none;
   color: $black;
+  font-size: 20px;
 }
 
 .yesSign {
@@ -78,23 +87,23 @@ button {
 
 
 // Game Board
-.container {
+.red-back {
   background: $red;
   height: 450px;
   margin: auto;
-  width: 450px;
+  width: 100%;
 }
 
 .board {
   background: $black;
   color: $white;
-  height: 400px;
+  height: 88.88%;
   font-size: 100px;
   text-align: center;
   margin: 0 auto;
   position: relative;
   top: 5%;
-  width: 400px;
+  width: 88.88%;
 }
 
 .board .box {
