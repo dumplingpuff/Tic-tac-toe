@@ -17,10 +17,14 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 header {
   height: 110px;
   margin: auto;
-  margin-bottom: 0;
+  margin-bottom: 0px;
   position: relative;
   text-align: center;
   width: 450px;
+}
+
+.navbar {
+  margin-bottom: 0px;
 }
 
 .title {
@@ -32,11 +36,11 @@ header {
 // Buttons
 
 header .buttonBox {
-  bottom: 0;
-  height: 20px;
-  position: absolute;
-  right: 0;
-  width: 200px;
+    bottom: 0;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    width: 260px;
 }
 
 button {
