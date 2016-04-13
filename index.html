@@ -14,7 +14,7 @@
           <button type="button" class="" data-toggle="modal" data-target=".sign-up">Sign Up</button>
         </div>
           <div class="modal fade sign-in" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -49,22 +49,23 @@
                   <h4 class="modal-title" id="gridSystemModalLabel">Please Sign Up To Play!</h4>
                 </div>
                 <div class="modal-body">
-                  <form id="sign-up">
+                  <div class="sign-up-form">
+                    <form id="sign-up">
+                        <div class="form-group">
+                          <label for="inputEmail">Email address</label>
+                          <input type="text" name="credentials[email]" class="form-control" id="inputEmail" placeholder="Email">
+                        </div>
                       <div class="form-group">
-                        <label for="inputEmail">Email address</label>
-                        <input type="text" name="credentials[email]" class="form-control" id="inputEmail" placeholder="Email">
+                        <label for="firstPass">Password</label>
+                        <input type="password" name="credentials[password]" class="form-control" id="firstPass" placeholder="Password">
                       </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="firstPass">Password</label>
-                      <input type="password" name="credentials[password]" class="form-control" id="firstPass" placeholder="Password">
-                    </div>
-                    <div class="form-group">
-                      <label class="sr-only" for="confirmPass">Confirm Password</label>
-                      <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Confirm Password">
-                    </div>
-                    <button type="submit" class="btn btn-default">Submit</button>
-                  </form>
+                      <div class="form-group">
+                        <label class="sr-only" for="confirmPass">Confirm Password</label>
+                        <input type="password" name="credentials[password_confirmation]" class="form-control" id="confirmPass" placeholder="Confirm Password">
+                      </div>
+                      <button type="submit" class="btn btn-default">Submit</button>
+                    </form>
+                  </div>
                 </div>
               </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -101,8 +102,8 @@
 
           <div class='yesSign buttonBox hide'>
             <button id='sign-out' type="button" class="">Sign Out</button>
-<button type="button" class="" data-toggle="modal" data-target=".change-password">Change Password</button>
-
+            <button type="button" class="" data-toggle="modal" data-target=".change-password">Change Password</button>
+          </div>
             <!-- Change Password -->
 
 
@@ -124,7 +125,7 @@
                 </div>
               </div>
             </div>
-          </div>
+
       </header>
 
 

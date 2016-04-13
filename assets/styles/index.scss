@@ -62,9 +62,15 @@ button {
 //   background: $yellow;
 // }
 
-#signUp {
-  height: 500px;
-  width: 500px;
+.sign-up-form {
+  width: 300px;
+  margin: auto;
+}
+
+.modal.custom .modal-dialog {
+    width:50%;
+    margin:0 auto;
+    /*add what you want here*/
 }
 
 
